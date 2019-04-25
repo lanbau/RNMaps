@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Starbucks Fullerton Waterboat House",
+        "address": "3 Fullerton Road, #02-01/02, 03 Fullerton Waterboat House, 049215",
+        "coords": {
+            "latitude": "1.285620",
+            "longitude": "103.854018"
+        },
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/The_Fullerton_Waterboat_House%2C_Singapore_%28441127118%29.jpg"
+    },
+    {
+        "name": "Starbucks United Square",
+        "address": "101 Thomson Road #01-01 United Square Singapore 307591",
+        "coords": {
+            "latitude": "1.316670",
+            "longitude": "103.833330"
+        },
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/United_Square_2.JPG"
+    }
+
+]
