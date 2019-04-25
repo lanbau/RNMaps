@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { MapView, Permissions } from 'expo';
-
+import Polyline from '@mapbox/polyline'
 const locations = require('./locations.json');
 
 export default class App extends React.Component {
@@ -39,6 +39,39 @@ export default class App extends React.Component {
       desLongitude: sampleLocation.coords.longitude
     }, () => {});
 
+  }
+
+  mergeCoords = () => {
+    const {
+      latitude,
+      longitude,
+      desLatitude,
+      desLongitude
+    } = this.state
+    const hasStartAndEnd = latitude !== null && desLatitude !== null
+    if (hasStartAndEnd) {
+      const concatStart = `${latitude}, ${longitude}`
+      const concatEnd = `${desLatitude}, ${desLongitude}`
+      this.getDirections(concatStart, concatEnd)
+    }
+  }
+
+  async getDirections (startLoc, endLoc) {
+    try {
+      const res = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${endLoc}&`)
+      const resJson = await res.json()
+      const points = Polyline.decode(resJson.routes[0].overview_polyline)
+      const coords = points.map(point => {
+        return {
+          latitude: point[0],
+          longitude: point[1]
+        }
+      })
+      this.setState({coords})
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
